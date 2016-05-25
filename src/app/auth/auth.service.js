@@ -41,10 +41,14 @@
         }
         
         function sendWelcomeEmail(emailAddress){
-            console.log("Is authenticated = "+firebaseAuthObject.$getAuth()); //I'm not authenticated?!
-            firebaseDataService.emails.push({
-               emailAddress:emailAddress 
-            });
+            if (firebaseAuthObject.$getAuth()){
+                firebaseDataService.emails.push({
+                   emailAddress:emailAddress 
+                });
+            } else {
+                console.log("Firebase publish failed due to firebaseAuth = null");
+                console.log("Watch here: "+firebaseAuthObject.$getAuth());
+            };
         }
     };
 })();
