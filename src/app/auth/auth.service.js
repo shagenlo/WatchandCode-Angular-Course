@@ -27,10 +27,13 @@
         };
         
         function login(user){
-            return firebaseAuthObject.$authWithPassword(user);  
+            var authObj = firebaseAuthObject.$authWithPassword(user);
+            console.log("Watch here: "+firebaseAuthObject.$getAuth());
+            return authObj;  
         };
         
         function logout(){
+            console.log("Watch here: "+firebaseAuthObject.$getAuth());
             partyService.reset();
             firebaseAuthObject.$unauth();
         }
